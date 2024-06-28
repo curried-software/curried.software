@@ -77,6 +77,29 @@
     </style>
   </head>
   <body>
-    <p class="hero glow-text ubuntu-mono">curried |> software</p>
+    <p id="hero" class="hero glow-text ubuntu-mono">curried |> software</p>
+    <script>
+      var hero = document.getElementById("hero");
+      var growingMultiplier = false;
+      var multiplier = 1.0;
+      function breathe(e) {
+          hero.style.textShadow = '0 0 ' + 5 * multiplier + 'px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 ' + 15 * multiplier + 'px rgba(255, 255, 255, 0.5)';
+          if (growingMultiplier) {
+              if (multiplier > 2.95) {
+                  growingMultiplier = false;
+              }
+              multiplier = multiplier * 1.05
+          } else {
+              if (multiplier < 0.3) {
+                  growingMultiplier = true;
+              }
+              multiplier = multiplier * 0.95;
+          }
+
+      }
+      addEventListener("load", (e) => {
+          setInterval(breathe, 80);
+      });
+    </script>
   </body>
 </html>
